@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>ARI MARSHELLO — Music Producer Official</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="logo" onclick="showPage('home')">🎵 ARI MARSHELLO STORE</div>
+  <div class="nav">
+    <button class="active" data-page="home" onclick="showPage('home')">🏠 Home</button>
+    <button data-page="katalog" onclick="showPage('katalog')">🎵 Katalog</button>
+    <button data-page="profil" onclick="showPage('profil')">👤 Profil</button>
+    <button data-page="kontak" onclick="showPage('kontak')">📞 Kontak</button>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+    <button class="icon-btn" onclick="showPage('wishlist')" title="Wishlist">
+      ❤️<span class="badge" id="wishBadge" style="display:none">0</span>
+    </button>
+    <button class="icon-btn" onclick="toggleCart()" title="Keranjang">
+      🛒<span class="badge" id="cartBadge">0</span>
+    </button>
+    <button class="icon-btn" id="userBtn" onclick="handleUserBtn()" title="Login">👤</button>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN: HOME ==================== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>ARI MARSHELLO STORE</h1>
+      <div class="subtitle">Music Producer Official</div>
+      <p>"Bikin lagu jadi lebih mudah dengan projek musik siap pakai. Semua sudah di-mix & master!"</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('katalog')">🎧 Dengar Koleksi</button>
+        <button class="btn-outline" onclick="hubungiWA()">💬 Hubungi Ari</button>
+      </div>
+      <div class="hero-stats">
+        <div><strong>8</strong>Projek</div>
+        <div><strong>⭐ 4.9</strong>Rating</div>
+        <div><strong>156</strong>Terjual</div>
+        <div><strong>5+</strong>Tahun</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><h2><span>🎼</span> Kategori Karya Ari</h2></div>
+    <div class="kategori">
+      <div onclick="filterKategori('Trap')"><span>🎤</span>Trap</div>
+      <div onclick="filterKategori('EDM')"><span>🎧</span>EDM</div>
+      <div onclick="filterKategori('Pop')"><span>🎹</span>Pop</div>
+      <div onclick="filterKategori('R&B')"><span>🎸</span>R&B</div>
+      <div onclick="filterKategori('Jazz')"><span>🎷</span>Jazz</div>
+      <div onclick="filterKategori('Lo-Fi')"><span>🌙</span>Lo-Fi</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <h2><span>🔥</span> Karya Terbaru</h2>
+      <a onclick="showPage('katalog')">Lihat Semua →</a>
+    </div>
+    <div class="produk-grid" id="produkHome"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><h2><span>⭐</span> Kata Mereka</h2></div>
+    <div class="produk-grid">
+      <div class="produk" style="cursor:default;padding:18px">
+        <div style="color:var(--gold);font-size:14px;margin-bottom:8px">⭐⭐⭐⭐⭐</div>
+        <div style="font-size:13px;color:var(--text-dim);font-style:italic;line-height:1.6;margin-bottom:10px">"Beat-nya keren, langsung bisa dipakai!"</div>
+        <div style="color:var(--accent);font-size:12px;font-weight:700">— Rizky, Penyanyi</div>
+      </div>
+      <div class="produk" style="cursor:default;padding:18px">
+        <div style="color:var(--gold);font-size:14px;margin-bottom:8px">⭐⭐⭐⭐⭐</div>
+        <div style="font-size:13px;color:var(--text-dim);font-style:italic;line-height:1.6;margin-bottom:10px">"Projek FLP-nya rapi, mudah diedit."</div>
+        <div style="color:var(--accent);font-size:12px;font-weight:700">— Dinda, Produser</div>
+      </div>
+      <div class="produk" style="cursor:default;padding:18px">
+        <div style="color:var(--gold);font-size:14px;margin-bottom:8px">⭐⭐⭐⭐⭐</div>
+        <div style="font-size:13px;color:var(--text-dim);font-style:italic;line-height:1.6;margin-bottom:10px">"Ari responsif, revisi cepat!"</div>
+        <div style="color:var(--accent);font-size:12px;font-weight:700">— Bagas, Rapper</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN: KATALOG ==================== -->
+<div class="page" id="page-katalog">
+  <div class="section" style="margin-top:24px">
+    <div class="section-title"><h2><span>🎵</span> Semua Karya Ari MARSHELLO</h2></div>
+    <div class="filter-bar" id="filterBar">
+      <div class="chip active" onclick="setFilter('all', this)">Semua</div>
+      <div class="chip" onclick="setFilter('Trap', this)">🎤 Trap</div>
+      <div class="chip" onclick="setFilter('EDM', this)">🎧 EDM</div>
+      <div class="chip" onclick="setFilter('Pop', this)">🎹 Pop</div>
+      <div class="chip" onclick="setFilter('R&B', this)">🎸 R&B</div>
+      <div class="chip" onclick="setFilter('Jazz', this)">🎷 Jazz</div>
+      <div class="chip" onclick="setFilter('Lo-Fi', this)">🌙 Lo-Fi</div>
+    </div>
+    <div class="sort-bar">
+      <span>Urutkan:</span>
+      <select id="sortSelect" onchange="renderKatalog()">
+        <option value="newest">Terbaru</option>
+        <option value="termurah">Harga Termurah</option>
+        <option value="termahal">Harga Termahal</option>
+        <option value="rating">Rating Tertinggi</option>
+        <option value="terjual">Paling Laris</option>
+      </select>
+      <input class="search" style="flex:1;min-width:150px;padding:8px 14px" placeholder="🔍 Cari nama atau genre..." id="searchKatalog" oninput="renderKatalog()">
+    </div>
+    <div class="produk-grid" id="produkKatalog"></div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN: DETAIL ==================== -->
+<div class="page" id="page-detail">
+  <div style="margin:20px">
+    <button class="btn-outline" style="padding:8px 18px;font-size:12px" onclick="showPage('katalog')">← Kembali</button>
+  </div>
+  <div class="detail-container" id="detailContent"></div>
+</div>
+
+<!-- ==================== HALAMAN: WISHLIST ==================== -->
+<div class="page" id="page-wishlist">
+  <div class="section" style="margin-top:24px">
+    <div class="section-title"><h2><span>❤️</span> Wishlist Ari</h2></div>
+    <div class="produk-grid" id="produkWishlist"></div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN: PROFIL ==================== -->
+<div class="page" id="page-profil">
+  <div class="profil-card">
+    <div class="profil-foto">🎤</div>
+    <h1>ARI MARSHELLO</h1>
+    <div class="tagline">MUSIC PRODUCER & BEATMAKER</div>
+    <p style="color:var(--text-dim);font-size:14px;max-width:600px;margin:0 auto;line-height:1.7">
+      Hai! Saya Ari Marshello, produser musik dari Indonesia. Sudah <strong style="color:var(--secondary)">5 tahun</strong> bikin beat untuk berbagai genre.
+    </p>
+    <div class="statistik">
+      <div><strong>8</strong><span>Projek</span></div>
+      <div><strong>156</strong><span>Terjual</span></div>
+      <div><strong>4.9</strong><span>Rating</span></div>
+      <div><strong>89</strong><span>Follower</span></div>
+    </div>
+    <h3 style="margin:24px 0 12px">🔗 Terhubung dengan Ari</h3>
+    <div class="sosmed-grid">
+      <a href="https://wa.me/6281234567890" target="_blank">📱 WhatsApp</a>
+      <a href="https://instagram.com/" target="_blank">📷 Instagram</a>
+      <a href="https://youtube.com/" target="_blank">▶️ YouTube</a>
+      <a href="https://spotify.com/" target="_blank">🎵 Spotify</a>
+      <a href="https://tiktok.com/" target="_blank">🎬 TikTok</a>
+      <a href="mailto:arimarshello@gmail.com">📧 Email</a>
+    </div>
+    <div style="margin-top:30px">
+      <button class="btn-primary" onclick="showPage('katalog')">🎧 Lihat Semua Karya</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN: KONTAK ==================== -->
+<div class="page" id="page-kontak">
+  <div class="section" style="margin-top:24px">
+    <div class="section-title"><h2><span>📞</span> Hubungi Ari Marshello</h2></div>
+    <div class="kontak-wrapper">
+      <div class="kontak-card">
+        <h3>💬 Kirim Pesan</h3>
+        <div class="form-group"><label>Nama Anda</label><input type="text" id="formNama" placeholder="Nama lengkap"></div>
+        <div class="form-group"><label>Email / WhatsApp</label><input type="text" id="formKontak" placeholder="Email atau WA"></div>
+        <div class="form-group"><label>Topik</label>
+          <select id="formTopik">
+            <option>Beli Projek Musik</option>
+            <option>Custom Beat</option>
+            <option>Kolaborasi</option>
+            <option>Jasa Mixing & Mastering</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Pesan</label><textarea id="formPesan" placeholder="Ceritakan kebutuhan Anda..."></textarea></div>
+        <button class="btn-primary" style="width:100%" onclick="kirimPesan()">📤 Kirim via WhatsApp</button>
+      </div>
+      <div class="kontak-card">
+        <h3>📌 Info Kontak</h3>
+        <div class="kontak-info-item"><div class="icon">📱</div><div class="text"><strong>WhatsApp</strong>+62 812-3456-7890</div></div>
+        <div class="kontak-info-item"><div class="icon">📧</div><div class="text"><strong>Email</strong>ari@ariMARSHELLO.com</div></div>
+        <div class="kontak-info-item"><div class="icon">📍</div><div class="text"><strong>Lokasi</strong>Jakarta, Indonesia</div></div>
+        <h3 style="margin-top:24px">❓ FAQ</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">File apa saja yang didapat? <span>+</span></div>
+          <div class="faq-a">Basic: MP3+WAV. Premium: + FLP + MIDI + STEM. Exclusive: full rights.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Bisa custom beat? <span>+</span></div>
+          <div class="faq-a">Bisa! Chat Ari via WhatsApp untuk diskusi.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Ada garansi? <span>+</span></div>
+          <div class="faq-a">Ya! Kalau file rusak, revisi atau uang kembali 100%.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NOW PLAYING ===== -->
+<div class="now-playing" id="nowPlaying">
+  <div class="np-cover" id="npCover">🎵</div>
+  <div class="np-info">
+    <div class="np-title" id="npTitle">Pilih lagu...</div>
+    <div class="np-artist" id="npArtist">ARI MARSHELLO</div>
+  </div>
+  <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="np-controls">
+    <button class="np-btn" onclick="prevAudio()">⏮</button>
+    <button class="np-btn np-play" id="playBtn" onclick="togglePlay()">▶️</button>
+    <button class="np-btn" onclick="nextAudio()">⏭</button>
+  </div>
+</div>
+
+<!-- ===== OVERLAY & CART ===== -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3>🛒 Keranjang</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total:</span><strong id="cartTotal">Rp0</strong></div>
+    <button class="btn-checkout" onclick="checkout()">💬 Checkout via WhatsApp</button>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast">Notifikasi!</div>
+
+<!-- ===== MODAL LOGIN/REGISTER ===== -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div class="auth-header">
+      <div class="auth-logo">🎵 ARI MARSHELLO</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login', this)">Masuk</button>
+        <button class="auth-tab" onclick="switchAuthTab('register', this)">Daftar</button>
+      </div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+      <h3>Selamat Datang Kembali! 👋</h3>
+      <p class="auth-sub">Masuk untuk akses wishlist & riwayat pembelian</p>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="email@contoh.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+      </div>
+      <div class="auth-remember">
+        <label><input type="checkbox" id="rememberMe"> Ingat saya</label>
+        <a onclick="showToast('Hubungi Ari via WhatsApp untuk reset password')">Lupa password?</a>
+      </div>
+      <button type="submit" class="btn-primary auth-submit">🔓 Masuk</button>
+      <div class="auth-divider">atau</div>
+      <button type="button" class="btn-outline auth-submit" onclick="loginDemo()">🎧 Coba Demo (tanpa daftar)</button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+      <h3>Buat Akun Baru 🎉</h3>
+      <p class="auth-sub">Daftar gratis, nikmati kemudahan belanja</p>
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="regNama" placeholder="Nama Anda" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="regEmail" placeholder="email@contoh.com" required>
+      </div>
+      <div class="form-group">
+        <label>No. WhatsApp</label>
+        <input type="tel" id="regWA" placeholder="08123456789" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPassword" placeholder="Min. 6 karakter" minlength="6" required>
+      </div>
+      <div class="form-group">
+        <label>Konfirmasi Password</label>
+        <input type="password" id="regPassword2" placeholder="Ulangi password" required>
+      </div>
+      <label class="auth-terms">
+        <input type="checkbox" required> Saya setuju dengan <a>Syarat & Ketentuan</a>
+      </label>
+      <button type="submit" class="btn-primary auth-submit">✨ Daftar Sekarang</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="footer-brand">🎵 ARI MARSHELLO</div>
+  <div style="color:var(--text-dim);font-size:12px">Music Producer & Beatmaker dari Indonesia 🇮🇩</div>
+  <div class="footer-links">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('katalog')">Katalog</a>
+    <a onclick="showPage('profil')">Profil</a>
+    <a onclick="showPage('kontak')">Kontak</a>
+  </div>
+  <div class="footer-copy">© 2025 Ari Marshello. All rights reserved.</div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/player.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
