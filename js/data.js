@@ -12,7 +12,7 @@ const produk = [
 
 // ==================== KONFIGURASI ====================
 const CONFIG = {
-  WA_NUMBER: "0882008281462", // GANTI dengan nomor WA Ari
+  WA_NUMBER: "62882008281462", // GANTI dengan nomor WA Ari
   TOKO_NAME: "ARI MARSHELLO",
   PAKET_MULTIPLIER: {
     basic: 1,
